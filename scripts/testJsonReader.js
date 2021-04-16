@@ -4,15 +4,22 @@ console.log("Test script starting.");
 const [, , ...args] = process.argv;
 const fetch = require("node-fetch");
 const fs = require("fs");
+const path = require("path");
 
 const SOURCE = {
   url: "url=",
   file: "file=",
 };
 
+const USAGE_MESSAGES = {
+  url: `node ${path.basename(__filename)} ${SOURCE.url}<full url>`,
+  file: `node ${path.basename(__filename)} ${SOURCE.file}<file path>`,
+}
+const GENERAL_USAGE_MESSAGE = `Usage: '${USAGE_MESSAGES.url}' or '${USAGE_MESSAGES.file}'`;
+
 if (args.length === 0) {
   console.log(
-    `Error: Please provide a url with '${SOURCE.url}<full url>' or a file with '${SOURCE.file}<file path>'`
+    `Error: No source specified. ${GENERAL_USAGE_MESSAGE}`
   );
 } else {
   const source = args[0];
@@ -22,7 +29,7 @@ if (args.length === 0) {
     fetchFromFile(source.replace(SOURCE.file, ""));
   } else {
     console.log(
-      `Error: unknown source type. Please use ${SOURCE.url} or ${SOURCE.file}`
+      `Error: unknown source type. ${GENERAL_USAGE_MESSAGE}`
     );
   }
 }

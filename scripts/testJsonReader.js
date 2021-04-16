@@ -6,22 +6,20 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 
 const SOURCE = {
-    url: 'url=',
-    file: 'file='
+  url: 'url=',
+  file: 'file='
 }
 
 if (args.length === 0) {
-    console.log(`Error: Please provide a url with '${SOURCE.url}<full url>' or a file with '${SOURCE.file}<file path>'`);
-    return 1;
+  console.log(`Error: Please provide a url with '${SOURCE.url}<full url>' or a file with '${SOURCE.file}<file path>'`);
 } else {
-    const source = args[0];
+  const source = args[0]
     if (source.includes(SOURCE.url)) {
         fetchFromUrl(source.replace(SOURCE.url, ''));
     } else if (source.includes(SOURCE.file)) {
         fetchFromFile(source.replace(SOURCE.file, ''));
     } else {
         console.log(`Error: unknown source type. Please use ${SOURCE.url} or ${SOURCE.file}`);
-        return 1;
     }
     
 }

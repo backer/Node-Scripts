@@ -6,11 +6,18 @@ module.exports = {
     node: true
   },
   extends: [
-    'standard'
+    'standard',
+    'prettier'
+  ],
+  plugins: [
+    'prettier'
   ],
   parserOptions: {
     ecmaVersion: 12
   },
   rules: {
+    'prettier/prettier': [
+      'error"'
+    ]
   }
 }
